@@ -2,6 +2,7 @@ from functools import lru_cache
 from typing import List
 
 import os
+from content import Content
 
 from window import Window
 
@@ -32,6 +33,11 @@ class Screen:
     def focus_next(self) -> None:
         if self.windows:
             w = self.windows.pop(0)
+            if self.windows:
+                self.windows[-1].frame_up = '-'
+                self.windows[-1].frame_right = '|'
+            w.frame_up = '='
+            w.frame_right = '#'
             self.windows.append(w)
     
     def close_focused(self) -> None:
@@ -41,7 +47,7 @@ class Screen:
     
     def test_spawn(self) -> None:
         win = Window('Test')
-        self.insert(win)
+        self.spawn(win)
 
     
     def to_text(self) -> str:
@@ -76,5 +82,20 @@ class Screen:
                 for text_x, let in enumerate(string):
                     self.text_array[window.y + text_y + 1][window.x + text_x + 1] = let
     
-    def insert(self, window: Window) -> None:
+    def spawn(self, window: Window) -> None:
         self.windows.append(window)
+    
+    def scroll_down_content_in_focused(self) -> None:
+        w = self.in_focus
+        if w and w.content:
+            w.scroll_value += 1
+            # w.insert_content(Content(w.content.text_array[w.scroll_value:]))
+            # w.update()
+
+    def scroll_up_content_in_focused(self) -> None:
+        w = self.in_focus
+        if w and w.content:
+            w.scroll_value -= 1
+            # w.text_array = w.get_empty_array()
+            # w.insert_content(Content(w.content.text_array[w.scroll_value:]))
+            # w.update()
