@@ -1,0 +1,8 @@
+venv/
+env/
+
+.debug.py
+
+*tmp*
+
+**__pycache__**

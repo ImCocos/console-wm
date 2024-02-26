@@ -1,3 +1,4 @@
-a = '12345'
-a[0] = 'a'
-print(a)
+import keyboard
+
+
+print(keyboard.read_key())
