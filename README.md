@@ -14,5 +14,5 @@ pip install -r requirements.txt
 cd console-wm
 deactivate
 source venv/bin/activate
-python base.py
+sudo python main.py
 ```
