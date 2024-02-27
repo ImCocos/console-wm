@@ -6,3 +6,7 @@ env/
 *tmp*
 
 **__pycache__**
+
+.vscode/
+
+.idea/
