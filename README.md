@@ -10,9 +10,15 @@ pip install -r requirements.txt
 
 # Run
 
+## Linux
+
 ```bash
 cd console-wm
 deactivate
 source venv/bin/activate
 sudo python main.py
 ```
+
+## MacOS
+
+Currently doesn't supported(
